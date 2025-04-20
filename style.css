@@ -1,0 +1,46 @@
+html,
+body,
+#viewDiv {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+calcite-shell {
+    height: 100vh;
+}
+
+.panel-content {
+    padding: 16px;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+calcite-panel,
+calcite-shell-panel,
+p,
+h1,
+h2,
+h3 {
+    font-family: 'Poppins', sans-serif;
+}
+
+.panel-content {
+    padding: 16px;
+}
+
+calcite-action {
+    margin: 4px 0;
+}
+
+.button-list {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding: 8px;
+}
+

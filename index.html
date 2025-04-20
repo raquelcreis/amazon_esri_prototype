@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Protótipo GeoVisor ORA</title>
+
+    <!-- Calcite Components -->
+    <script type="module" src="https://js.arcgis.com/calcite-components/2.6.0/calcite.esm.js"></script>
+    <link rel="stylesheet" href="https://js.arcgis.com/calcite-components/2.6.0/calcite.css" />
+
+    <!-- ArcGIS Maps SDK for JavaScript -->
+    <link rel="stylesheet" href="https://js.arcgis.com/4.29/esri/themes/light/main.css" />
+    <script src="https://js.arcgis.com/4.29/"></script>
+
+    <!-- ORA Design System -->
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+<calcite-shell>
+    <calcite-shell-panel slot="panel-start">
+        <calcite-panel heading="Geovisor ORA">
+            <div class="panel-content">
+                <p>Esse é um protótipo para o novo portal ORA 2.0.</p>
+
+    <calcite-block open>
+        <div class="button-list">
+            <calcite-button id="btn-brazil" width="full">Brasil</calcite-button>
+            <calcite-button id="btn-colombia" width="full">Colômbia</calcite-button>
+            <calcite-button id="btn-peru" width="full">Peru</calcite-button>
+            <calcite-button id="btn-bolivia" width="full">Bolívia</calcite-button>
+            <calcite-button id="btn-ecuador" width="full">Equador</calcite-button>
+            <calcite-button id="btn-venezuela" width="full">Venezuela</calcite-button>
+            <calcite-button id="btn-guyana" width="full">Guiana</calcite-button>
+            <calcite-button id="btn-suriname" width="full">Suriname</calcite-button>
+        </div>
+    </calcite-block>
+
+
+            </div>
+        </calcite-panel>
+    </calcite-shell-panel>
+
+    <div id="viewDiv"></div>
+</calcite-shell>
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>
