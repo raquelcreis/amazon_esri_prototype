@@ -9,20 +9,6 @@ body,
     padding: 0;
 }
 
-/* ======================== Calcite Shell ======================== */
-
-/* Ensuring the calcite-shell occupies the full height of the screen */
-calcite-shell {
-    height: 100vh;
-}
-
-/* ======================== Panel Content ======================== */
-
-/* Adding padding for the panel content */
-.panel-content {
-    padding: 16px;
-}
-
 /* ======================== Font Family ======================== */
 
 /* Ensuring consistency with the 'Poppins' font throughout the body and related elements */
@@ -30,7 +16,6 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
-/* Applying the 'Poppins' font to all titles and paragraphs */
 calcite-panel,
 calcite-shell-panel,
 p,
@@ -40,29 +25,84 @@ h3 {
     font-family: 'Poppins', sans-serif;
 }
 
+/* ======================== Panel Content ======================== */
+
+.panel-content {
+    padding: 16px;
+}
+
 /* ======================== Button List ======================== */
 
-/* Styling the button list */
 .button-list {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    gap: 8px;
-    /* Space between buttons */
-    padding: 8px;
+    gap: 1px;
+    padding: 4px;
 }
 
 /* ======================== Button Styles ======================== */
 
-/* Ensuring buttons inside .button-list stretch and align properly */
-calcite-button {
-    width: 100%;
-    /* Making buttons occupy the full available width */
+/* Estilo geral para os botões */
+.country-btn {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    /* Fundo branco */
+    color: #34a853;
+    /* Texto verde */
+    border: 2px solid #34a853;
+    /* Borda verde */
+    border-radius: 8px;
+    /* Borda arredondada */
+    padding: 8px 15px;
+    /* Espaçamento interno */
+    font-weight: 600;
+    /* Peso da fonte */
+    font-size: 14px;
+    margin: 5px 0;
+    /* Espaçamento entre os botões */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    /* Efeito de transição suave */
+    text-align: left;
+    /* Alinhamento do texto à esquerda */
 }
 
-/* ======================== Action Margin ======================== */
+/* Estilo para o ícone da bandeira */
+.flag-icon {
+    width: 20px;
+    height: 15px;
+    margin-right: 10px;
+    /* Espaçamento entre a bandeira e o texto */
+}
 
-/* Adding a small margin between actions */
+/* ======================== Button Hover Styles ======================== */
+
+.country-btn:hover {
+    background-color: #f1f1f1;
+    /* Cor de fundo mais clara no hover */
+    border-color: #2c8a3c;
+    /* Cor da borda no hover */
+    color: #2c8a3c;
+    /* Cor do texto no hover */
+}
+
+/* ======================== Button Focus Styles ======================== */
+
+.country-btn:focus {
+    outline: none;
+    /* Retira o contorno padrão */
+    box-shadow: 0 0 5px 2px rgba(0, 128, 0, 0.6);
+    /* Sombras no foco */
+}
+
+/* ======================== Calcite Shell and Actions ======================== */
+
+calcite-shell {
+    height: 100vh;
+}
+
 .calcite-action {
     margin: 4px 0;
 }

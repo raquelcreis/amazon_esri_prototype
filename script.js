@@ -33,7 +33,9 @@ require([
                         } else {
                             return "No data available for this country.";
                         }
-                    }
+                    },
+                    // Remove default actions, including Zoom To
+                    includeDefaultActions: false, // This disables the default actions like Zoom To
                 },
                 renderer: {
                     type: "simple",
@@ -50,7 +52,6 @@ require([
 
             /* ======================== Map and View Setup ======================== */
 
-            // Create the map and view
             const map = new Map({
                 basemap: "topo-vector",
                 layers: [panAmazoniaLayer]
@@ -65,9 +66,6 @@ require([
 
             /* ======================== Popup Configuration ======================== */
 
-            // Remove the default popup actions (like "Zoom to")
-            view.popup.actions = [];
-
             // Function to zoom to the country and show the popup
             function zoomAndShowPopup(countryName) {
                 panAmazoniaLayer.queryFeatures({
@@ -77,8 +75,14 @@ require([
                 }).then(function (results) {
                     const feature = results.features[0];
                     if (feature) {
+                        let zoomLevel = 5; // Default zoom level for all countries
+
                         // Zoom to the country geometry
-                        view.goTo(feature.geometry.extent.expand(1.5)); // Zoom with a small 1.5x increase
+                        view.goTo({
+                            target: feature.geometry.extent.expand(1.5), // Zoom with a small 1.5x increase
+                            zoom: zoomLevel // Apply specific zoom level
+                        });
+
                         // Open the popup with the country name
                         view.popup.open({
                             title: feature.attributes.name,
@@ -87,7 +91,9 @@ require([
                                 <b>Population:</b> ${countryData[countryName].population}<br>
                                 <b>Capital:</b> ${countryData[countryName].capital}
                             `,
-                            location: feature.geometry.centroid || feature.geometry
+                            location: feature.geometry.centroid || feature.geometry,
+                            // Ensure no Zoom To action is present
+                            actions: [] // Alternatively, you can use actions to customize further
                         });
                     }
                 });
