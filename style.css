@@ -1,3 +1,5 @@
+/* ======================== Global Styles ======================== */
+
 html,
 body,
 #viewDiv {
@@ -7,18 +9,28 @@ body,
     padding: 0;
 }
 
+/* ======================== Calcite Shell ======================== */
+
+/* Ensuring the calcite-shell occupies the full height of the screen */
 calcite-shell {
     height: 100vh;
 }
 
+/* ======================== Panel Content ======================== */
+
+/* Adding padding for the panel content */
 .panel-content {
     padding: 16px;
 }
 
+/* ======================== Font Family ======================== */
+
+/* Ensuring consistency with the 'Poppins' font throughout the body and related elements */
 body {
     font-family: 'Poppins', sans-serif;
 }
 
+/* Applying the 'Poppins' font to all titles and paragraphs */
 calcite-panel,
 calcite-shell-panel,
 p,
@@ -28,19 +40,29 @@ h3 {
     font-family: 'Poppins', sans-serif;
 }
 
-.panel-content {
-    padding: 16px;
-}
+/* ======================== Button List ======================== */
 
-calcite-action {
-    margin: 4px 0;
-}
-
+/* Styling the button list */
 .button-list {
     display: flex;
     flex-direction: column;
     align-items: stretch;
     gap: 8px;
+    /* Space between buttons */
     padding: 8px;
 }
 
+/* ======================== Button Styles ======================== */
+
+/* Ensuring buttons inside .button-list stretch and align properly */
+calcite-button {
+    width: 100%;
+    /* Making buttons occupy the full available width */
+}
+
+/* ======================== Action Margin ======================== */
+
+/* Adding a small margin between actions */
+.calcite-action {
+    margin: 4px 0;
+}
