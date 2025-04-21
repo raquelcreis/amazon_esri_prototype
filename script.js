@@ -6,8 +6,8 @@ require([
 
     // Load additional country information for the popup and side panel from JSON files
     Promise.all([
-        fetch('pop_up_text.json').then(response => response.json()),
-        fetch('side_panel_text.json').then(response => response.json())
+        fetch('data/pop_up_text.json').then(response => response.json()),
+        fetch('data/side_panel_text.json').then(response => response.json())
     ])
         .then(([countryDataForPopup, countryDataForSidePanel]) => {
 
