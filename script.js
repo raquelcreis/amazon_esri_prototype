@@ -62,6 +62,14 @@ require([
                 zoom: 4
             });
 
+            // Variáveis para highlight
+            let highlightHandle = null;
+            let panAmazoniaLayerView = null;
+
+            view.whenLayerView(panAmazoniaLayer).then(function (layerView) {
+                panAmazoniaLayerView = layerView;
+            });
+
             // Function to zoom and open a popup for a specific country
             function zoomAndShowPopup(countryName) {
                 panAmazoniaLayer.queryFeatures({
@@ -71,6 +79,16 @@ require([
                 }).then(function (results) {
                     const feature = results.features[0];
                     if (feature) {
+                        // Remove highlight anterior, se existir
+                        if (highlightHandle) {
+                            highlightHandle.remove();
+                            highlightHandle = null;
+                        }
+                        // Aplica o highlight no feature selecionado
+                        if (panAmazoniaLayerView) {
+                            highlightHandle = panAmazoniaLayerView.highlight(feature);
+                        }
+
                         const geometry = feature.geometry;
                         const attributes = feature.attributes;
                         const data = countryDataForPopup[countryName];
@@ -91,10 +109,9 @@ require([
                             actions: []
                         });
 
-                        // Show side panel with additional country info
+                        // Atualiza painel lateral...
                         if (data) {
                             const sidePanelData = countryDataForSidePanel[countryName];
-
                             if (sidePanelData) {
                                 countryDetails.innerHTML = `
                                 <h3>${countryName}</h3>
@@ -159,6 +176,10 @@ require([
     // Hide side panel on button click
     closePanelBtn.addEventListener("click", () => {
         infoPanel.hidden = true;
+        if (highlightHandle) {
+            highlightHandle.remove();
+            highlightHandle = null;
+        }
     });
 
 });
