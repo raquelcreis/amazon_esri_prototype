@@ -4,10 +4,12 @@ require([
     "esri/layers/GeoJSONLayer"
 ], function (Map, MapView, GeoJSONLayer) {
 
-    // Load additional country information from JSON file
-    fetch('pop_up_text.json')
-        .then(response => response.json())
-        .then(countryData => {
+    // Load additional country information for the popup and side panel from JSON files
+    Promise.all([
+        fetch('pop_up_text.json').then(response => response.json()),
+        fetch('side_panel_text.json').then(response => response.json())
+    ])
+        .then(([countryDataForPopup, countryDataForSidePanel]) => {
 
             // Create the GeoJSON layer for Pan-Amazon countries
             const panAmazoniaLayer = new GeoJSONLayer({
@@ -18,15 +20,15 @@ require([
                     title: "{name}",
                     content: function (event) {
                         const countryName = event.graphic.attributes.name;
-                        const countryInfo = countryData[countryName];
+                        const countryInfo = countryDataForPopup[countryName];
 
                         if (countryInfo) {
                             return `
-                                <strong>${countryName}</strong><br>
-                                <b>Area:</b> ${countryInfo.total_area}<br>
-                                <b>Population:</b> ${countryInfo.population}<br>
-                                <b>Capital:</b> ${countryInfo.capital}
-                            `;
+                            <strong>${countryName}</strong><br>
+                            <b>Area:</b> ${countryInfo.total_area}<br>
+                            <b>Population:</b> ${countryInfo.population}<br>
+                            <b>Capital:</b> ${countryInfo.capital}
+                        `;
                         } else {
                             return "No data available for this country.";
                         }
@@ -71,7 +73,7 @@ require([
                     if (feature) {
                         const geometry = feature.geometry;
                         const attributes = feature.attributes;
-                        const data = countryData[countryName];
+                        const data = countryDataForPopup[countryName];
 
                         view.goTo({
                             target: geometry.extent.expand(1.5),
@@ -81,24 +83,27 @@ require([
                         view.popup.open({
                             title: attributes.name,
                             content: `
-                                <b>Area:</b> ${data.total_area}<br>
-                                <b>Population:</b> ${data.population}<br>
-                                <b>Capital:</b> ${data.capital}
-                            `,
+                            <b>Area:</b> ${data.total_area}<br>
+                            <b>Population:</b> ${data.population}<br>
+                            <b>Capital:</b> ${data.capital}
+                        `,
                             location: geometry.centroid || geometry,
                             actions: []
                         });
 
                         // Show side panel with additional country info
                         if (data) {
-                            countryDetails.innerHTML = `
+                            const sidePanelData = countryDataForSidePanel[countryName];
+
+                            if (sidePanelData) {
+                                countryDetails.innerHTML = `
                                 <h3>${countryName}</h3>
-                                <p><strong>Area:</strong> ${data.total_area}</p>
-                                <p><strong>Population:</strong> ${data.population}</p>
-                                <p><strong>Capital:</strong> ${data.capital}</p>
-                                <p><em>Additional information can be displayed here...</em></p>
+                                <p><strong>Description:</strong> ${sidePanelData.description}</p>
+                                <p><strong>Important Species:</strong> ${sidePanelData.important_species.join(', ')}</p>
+                                <p><strong>Protected Areas:</strong> ${sidePanelData.protected_areas}</p>
                             `;
-                            infoPanel.hidden = false;
+                                infoPanel.hidden = false;
+                            }
                         }
                     }
                 });
