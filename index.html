@@ -76,6 +76,18 @@
         </calcite-shell-panel>
 
         <div id="viewDiv"></div>
+        
+        <!-- Painel Lateral Direito -->
+        <calcite-shell-panel slot="panel-end" id="infoPanel" hidden>
+            <calcite-panel heading="Country Details">
+                <div id="countryDetails" class="panel-details">
+                    <!-- Conteúdo dinâmico vai aqui -->
+                </div>
+                <calcite-button slot="footer" width="full" appearance="outline" id="closePanelBtn">
+                    Fechar
+                </calcite-button>
+            </calcite-panel>
+        </calcite-shell-panel>
     </calcite-shell>
 
     <script src="script.js"></script>

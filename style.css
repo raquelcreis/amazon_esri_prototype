@@ -49,11 +49,11 @@ h3 {
     align-items: center;
     background-color: white;
     /* Fundo branco */
-    color: #34a853;
+    color: #000000;
     /* Texto verde */
-    border: 2px solid #34a853;
+    border: 1px solid #34a853;
     /* Borda verde */
-    border-radius: 8px;
+    border-radius: 16px;
     /* Borda arredondada */
     padding: 8px 15px;
     /* Espaçamento interno */
@@ -105,4 +105,12 @@ calcite-shell {
 
 .calcite-action {
     margin: 4px 0;
+}
+
+/* ======================== Right Panel ======================== */
+
+.panel-details {
+    padding: 1rem;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
 }

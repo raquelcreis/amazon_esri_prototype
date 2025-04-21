@@ -4,13 +4,10 @@ require([
     "esri/layers/GeoJSONLayer"
 ], function (Map, MapView, GeoJSONLayer) {
 
-    /* ======================== Load JSON Data ======================== */
-
+    // Load additional country information from JSON file
     fetch('pop_up_text.json')
         .then(response => response.json())
         .then(countryData => {
-
-            /* ======================== GeoJSON Layer ======================== */
 
             // Create the GeoJSON layer for Pan-Amazon countries
             const panAmazoniaLayer = new GeoJSONLayer({
@@ -34,39 +31,36 @@ require([
                             return "No data available for this country.";
                         }
                     },
-                    // Remove default actions, including Zoom To
-                    includeDefaultActions: false, // This disables the default actions like Zoom To
+                    includeDefaultActions: false
                 },
                 renderer: {
                     type: "simple",
                     symbol: {
                         type: "simple-fill",
-                        color: [34, 139, 34, 0.2], // Light green color
+                        color: [34, 139, 34, 0.2], // Light green fill
                         outline: {
-                            color: [0, 100, 0, 1],   // Dark green for outline
+                            color: [0, 100, 0, 1],   // Dark green border
                             width: 2
                         }
                     }
                 }
             });
 
-            /* ======================== Map and View Setup ======================== */
-
+            // Initialize the map with the base map and layers
             const map = new Map({
                 basemap: "topo-vector",
                 layers: [panAmazoniaLayer]
             });
 
+            // Initialize the map view
             const view = new MapView({
-                container: "viewDiv",  // The ID of the container in the HTML
+                container: "viewDiv",  // This must match the HTML element ID
                 map: map,
-                center: [-63, -3],     // Initial map coordinates
-                zoom: 4                // Initial zoom level
+                center: [-63, -3],
+                zoom: 4
             });
 
-            /* ======================== Popup Configuration ======================== */
-
-            // Function to zoom to the country and show the popup
+            // Function to zoom and open a popup for a specific country
             function zoomAndShowPopup(countryName) {
                 panAmazoniaLayer.queryFeatures({
                     where: `name = '${countryName}'`,
@@ -75,33 +69,42 @@ require([
                 }).then(function (results) {
                     const feature = results.features[0];
                     if (feature) {
-                        let zoomLevel = 5; // Default zoom level for all countries
+                        const geometry = feature.geometry;
+                        const attributes = feature.attributes;
+                        const data = countryData[countryName];
 
-                        // Zoom to the country geometry
                         view.goTo({
-                            target: feature.geometry.extent.expand(1.5), // Zoom with a small 1.5x increase
-                            zoom: zoomLevel // Apply specific zoom level
+                            target: geometry.extent.expand(1.5),
+                            zoom: 5
                         });
 
-                        // Open the popup with the country name
                         view.popup.open({
-                            title: feature.attributes.name,
+                            title: attributes.name,
                             content: `
-                                <b>Area:</b> ${countryData[countryName].total_area}<br>
-                                <b>Population:</b> ${countryData[countryName].population}<br>
-                                <b>Capital:</b> ${countryData[countryName].capital}
+                                <b>Area:</b> ${data.total_area}<br>
+                                <b>Population:</b> ${data.population}<br>
+                                <b>Capital:</b> ${data.capital}
                             `,
-                            location: feature.geometry.centroid || feature.geometry,
-                            // Ensure no Zoom To action is present
-                            actions: [] // Alternatively, you can use actions to customize further
+                            location: geometry.centroid || geometry,
+                            actions: []
                         });
+
+                        // Show side panel with additional country info
+                        if (data) {
+                            countryDetails.innerHTML = `
+                                <h3>${countryName}</h3>
+                                <p><strong>Area:</strong> ${data.total_area}</p>
+                                <p><strong>Population:</strong> ${data.population}</p>
+                                <p><strong>Capital:</strong> ${data.capital}</p>
+                                <p><em>Additional information can be displayed here...</em></p>
+                            `;
+                            infoPanel.hidden = false;
+                        }
                     }
                 });
             }
 
-            /* ======================== Event Listeners for Buttons ======================== */
-
-            // Add event listeners for the buttons
+            // Button listeners for each country
             document.getElementById("btn-brazil").addEventListener("click", function () {
                 zoomAndShowPopup("Brazil");
             });
@@ -134,9 +137,7 @@ require([
                 zoomAndShowPopup("Suriname");
             });
 
-            /* ======================== Zoom and Popup for Country Click ======================== */
-
-            // Add event listener for the country click in the map view
+            // Enable click on map features to trigger zoom and popup
             panAmazoniaLayer.on("click", function (event) {
                 const countryName = event.graphic.attributes.name;
                 zoomAndShowPopup(countryName);
@@ -144,5 +145,15 @@ require([
 
         })
         .catch(error => console.error('Error loading JSON:', error));
+
+    // Side panel controls
+    const infoPanel = document.getElementById("infoPanel");
+    const countryDetails = document.getElementById("countryDetails");
+    const closePanelBtn = document.getElementById("closePanelBtn");
+
+    // Hide side panel on button click
+    closePanelBtn.addEventListener("click", () => {
+        infoPanel.hidden = true;
+    });
 
 });
