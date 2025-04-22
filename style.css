@@ -108,3 +108,79 @@ calcite-shell {
     font-family: 'Poppins', sans-serif;
     line-height: 1.6;
 }
+
+/* ======================== Custom Popup Styles ======================== */
+
+#customPopup {
+    position: absolute;
+    z-index: 999;
+    font-family: 'Poppins', sans-serif;
+    padding: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    max-width: 320px;
+    background-color: white;
+    display: none;
+    top: 0;
+    left: 0;
+}
+
+.custom-popup-header {
+    background-color: #34a853;
+    color: white;
+    padding: 15px;
+    font-weight: 600;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.custom-popup-flag {
+    width: 24px;
+    height: 18px;
+    margin-right: 10px;
+}
+
+.custom-popup-content {
+    padding: 15px;
+    background-color: white;
+}
+
+.custom-popup-item {
+    margin-bottom: 10px;
+}
+
+.custom-popup-label {
+    font-weight: 600;
+    margin-right: 5px;
+    color: #333;
+}
+
+.custom-popup-value {
+    color: #555;
+}
+
+.custom-popup-close {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    outline: none;
+}
+
+.custom-popup-close:hover {
+    opacity: 0.8;
+}
+
+/* Hide default Esri popup if needed */
+.esri-popup--is-docked {
+    display: none !important;
+}
