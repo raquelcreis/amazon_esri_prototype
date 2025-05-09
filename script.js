@@ -22,12 +22,12 @@ require([
 
     // Coordenadas aproximadas para cada país (centro e zoom)
     const countryViewpoints = {
-        brazil: { center: [-54, -10], zoom: 4 },
-        colombia: { center: [-74, 4], zoom: 5 },
-        peru: { center: [-75, -10], zoom: 5 },
-        bolivia: { center: [-64, -16], zoom: 5 },
+        brazil: { center: [-54, -10], zoom: 6 },
+        colombia: { center: [-74, 4], zoom: 7 },
+        peru: { center: [-75, -10], zoom: 6 },
+        bolivia: { center: [-64, -16], zoom: 6 },
         ecuador: { center: [-78.5, -1.5], zoom: 6 },
-        venezuela: { center: [-66, 7], zoom: 5 },
+        venezuela: { center: [-66, 7], zoom: 6 },
         guyana: { center: [-59, 5], zoom: 6 },
         suriname: { center: [-56, 4], zoom: 6 }
     };

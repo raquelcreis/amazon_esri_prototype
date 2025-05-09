@@ -29,7 +29,8 @@
 
             <calcite-panel heading="Amazon GeoVisor">
                 <div class="panel-content">
-                    <p>This is a prototype for the new ARO 2.0 portal.</p>
+                    <p><b>Prototype for the new ARO 2.0</b></p>
+                    <p>It explores ways to visualize Amazon data, including layers of Indigenous Territories.</p>
 
                     <!-- Lista de Botões de Países -->
                     <calcite-block open>
@@ -83,20 +84,6 @@
         <!-- Mapa -->
         <div id="viewDiv"></div>
 
-        <!-- Painel Lateral Direito -->
-        <calcite-shell-panel slot="panel-end" id="infoPanel" hidden>
-            <calcite-panel heading="Country Details">
-                <div id="countryDetails" class="panel-details">
-                    <!-- Conteúdo será inserido dinamicamente -->
-                </div>
-                <calcite-button slot="footer" width="full" appearance="outline" id="closePanelBtn">
-                    Close
-                </calcite-button>
-            </calcite-panel>
-        </calcite-shell-panel>
-
-        <!-- Popup Customizado -->
-        <div id="customPopup"></div>
     </calcite-shell>
 
     <script src="script.js"></script>
