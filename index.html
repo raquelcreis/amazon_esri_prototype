@@ -17,11 +17,11 @@
     <!-- ORA Design System -->
     <link rel="stylesheet" href="style.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
-
 </head>
 
 <body>
     <calcite-shell>
+        <!-- Painel Lateral Esquerdo -->
         <calcite-shell-panel slot="panel-start">
             <div class="panel-header-logo">
                 <img src="logo_ora.svg" alt="Logo ARO" class="logo-icon">
@@ -30,7 +30,8 @@
             <calcite-panel heading="Amazon GeoVisor">
                 <div class="panel-content">
                     <p>This is a prototype for the new ARO 2.0 portal.</p>
-                    <!-- Left Side Panel Buttons List -->
+
+                    <!-- Lista de Botões de Países -->
                     <calcite-block open>
                         <div class="button-list">
                             <button id="btn-brazil" class="country-btn">
@@ -79,13 +80,14 @@
             </calcite-panel>
         </calcite-shell-panel>
 
+        <!-- Mapa -->
         <div id="viewDiv"></div>
 
-        <!-- Right Side Panel -->
+        <!-- Painel Lateral Direito -->
         <calcite-shell-panel slot="panel-end" id="infoPanel" hidden>
             <calcite-panel heading="Country Details">
                 <div id="countryDetails" class="panel-details">
-                    <!-- side_panel_text.json content here -->
+                    <!-- Conteúdo será inserido dinamicamente -->
                 </div>
                 <calcite-button slot="footer" width="full" appearance="outline" id="closePanelBtn">
                     Close
@@ -93,7 +95,7 @@
             </calcite-panel>
         </calcite-shell-panel>
 
-        <!-- Custom Popup -->
+        <!-- Popup Customizado -->
         <div id="customPopup"></div>
     </calcite-shell>
 
