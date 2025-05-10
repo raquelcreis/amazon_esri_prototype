@@ -5,22 +5,22 @@ require([
     "esri/geometry/Extent"
 ], function (WebMap, MapView, Legend, Extent) {
 
-    // Cria o WebMap diretamente a partir da ID
+    // Create the WebMap from the portal item ID
     const webmap = new WebMap({
         portalItem: {
             id: "21308afcb904478dbb1ff414f85e48e9"
         }
     });
 
-    // Cria a visualização do mapa
+    // Create the map view
     const view = new MapView({
         container: "viewDiv",
         map: webmap,
-        center: [-60, -4], // Centro aproximado da Amazônia
+        center: [-60, -4], // Approximate center of the Amazon region
         zoom: 4
     });
 
-    // Coordenadas aproximadas para cada país (centro e zoom)
+    // Approximate center coordinates and zoom level for each country
     const countryViewpoints = {
         brazil: { center: [-54, -10], zoom: 6 },
         colombia: { center: [-74, 4], zoom: 7 },
@@ -32,28 +32,29 @@ require([
         suriname: { center: [-56, 4], zoom: 6 }
     };
 
-    // Quando o WebMap estiver pronto, adiciona o controle de toggle
+    // When the WebMap is ready, add the toggle control and event handlers
     view.when(() => {
-        // Busca a camada de Territórios Indígenas pelo título
+        // Find the Indigenous Territories layer by its title
         const territoriosIndigenasLayer = webmap.layers.find(layer =>
             layer.title.includes("Terra Indígena") || layer.title.includes("Território Indígena")
         );
 
+        // Synchronize the toggle checkbox state with the layer visibility
         const toggleTI = document.getElementById("toggleTI");
         if (territoriosIndigenasLayer && toggleTI) {
-            toggleTI.checked = territoriosIndigenasLayer.visible; // Sincronia inicial
+            toggleTI.checked = territoriosIndigenasLayer.visible;
             toggleTI.addEventListener("calciteSwitchChange", (event) => {
                 territoriosIndigenasLayer.visible = event.target.checked;
             });
         }
 
-        // Adiciona a legenda
+        // Add the legend to the map view
         const legend = new Legend({
             view: view
         });
         view.ui.add(legend, "bottom-left");
 
-        // Adiciona evento aos botões de país para zoom
+        // Add event listeners to the country buttons to update the map view
         Object.keys(countryViewpoints).forEach(country => {
             const btn = document.getElementById(`btn-${country}`);
             if (btn) {

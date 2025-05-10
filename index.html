@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8" />
@@ -20,19 +20,22 @@
 </head>
 
 <body>
+    <!-- Calcite Shell for main layout -->
     <calcite-shell>
-        <!-- Painel Lateral Esquerdo -->
+        <!-- Left Sidebar Panel -->
         <calcite-shell-panel slot="panel-start">
+            <!-- Logo Header Section -->
             <div class="panel-header-logo">
-                <img src="logo_ora.svg" alt="Logo ARO" class="logo-icon">
+                <img src="logo_ora.svg" alt="ARO Logo" class="logo-icon">
             </div>
 
+            <!-- Panel for the GeoVisor description -->
             <calcite-panel heading="Amazon GeoVisor">
                 <div class="panel-content">
                     <p><b>Prototype for the new ARO 2.0</b></p>
                     <p>It explores ways to visualize Amazon data, including layers of Indigenous Territories.</p>
 
-                    <!-- Lista de Botões de Países -->
+                    <!-- Country Buttons List -->
                     <calcite-block open>
                         <div class="button-list">
                             <button id="btn-brazil" class="country-btn">
@@ -81,11 +84,12 @@
             </calcite-panel>
         </calcite-shell-panel>
 
-        <!-- Mapa -->
+        <!-- Map Container -->
         <div id="viewDiv"></div>
 
     </calcite-shell>
 
+    <!-- External JavaScript -->
     <script src="script.js"></script>
 </body>
 
