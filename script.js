@@ -1,26 +1,20 @@
 require([
     "esri/WebMap",
     "esri/views/MapView",
-    "esri/widgets/Legend",
-    "esri/geometry/Extent"
-], function (WebMap, MapView, Legend, Extent) {
+    "esri/widgets/Legend"
+], function (WebMap, MapView, Legend) {
 
-    // Create the WebMap from the portal item ID
     const webmap = new WebMap({
-        portalItem: {
-            id: "21308afcb904478dbb1ff414f85e48e9"
-        }
+        portalItem: { id: "21308afcb904478dbb1ff414f85e48e9" }
     });
 
-    // Create the map view
     const view = new MapView({
         container: "viewDiv",
         map: webmap,
-        center: [-60, -4], // Approximate center of the Amazon region
+        center: [-60, -4],
         zoom: 4
     });
 
-    // Approximate center coordinates and zoom level for each country
     const countryViewpoints = {
         brazil: { center: [-54, -10], zoom: 6 },
         colombia: { center: [-74, 4], zoom: 7 },
@@ -32,14 +26,11 @@ require([
         suriname: { center: [-56, 4], zoom: 6 }
     };
 
-    // When the WebMap is ready, add the toggle control and event handlers
     view.when(() => {
-        // Find the Indigenous Territories layer by its title
         const territoriosIndigenasLayer = webmap.layers.find(layer =>
             layer.title.includes("Terra Indígena") || layer.title.includes("Território Indígena")
         );
 
-        // Synchronize the toggle checkbox state with the layer visibility
         const toggleTI = document.getElementById("toggleTI");
         if (territoriosIndigenasLayer && toggleTI) {
             toggleTI.checked = territoriosIndigenasLayer.visible;
@@ -48,24 +39,37 @@ require([
             });
         }
 
-        // Add the legend to the map view
-        const legend = new Legend({
-            view: view
-        });
+        const legend = new Legend({ view: view });
         view.ui.add(legend, "bottom-left");
 
-        // Add event listeners to the country buttons to update the map view
         Object.keys(countryViewpoints).forEach(country => {
             const btn = document.getElementById(`btn-${country}`);
             if (btn) {
                 btn.addEventListener("click", () => {
                     const vp = countryViewpoints[country];
-                    view.goTo({
-                        center: vp.center,
-                        zoom: vp.zoom
-                    });
+                    view.goTo({ center: vp.center, zoom: vp.zoom });
+                    showVideo();
                 });
             }
         });
     });
 });
+
+// Mostrar o vídeo do YouTube
+function showVideo() {
+    const container = document.getElementById("videoContainer");
+    const iframe = document.getElementById("youtubeFrame");
+
+    // Força recarregamento do vídeo
+    iframe.src = "https://www.youtube.com/embed/d3bFJopp3Ws?autoplay=1";
+    container.classList.remove("hidden");
+}
+
+// Esconder o vídeo
+function hideVideo() {
+    const container = document.getElementById("videoContainer");
+    container.classList.add("hidden");
+
+    const iframe = document.getElementById("youtubeFrame");
+    iframe.src = ""; // Remove o vídeo para que ele pare completamente
+}

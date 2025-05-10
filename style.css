@@ -1,5 +1,4 @@
 /* ======================== Global Styles ======================== */
-
 html,
 body,
 #viewDiv {
@@ -7,76 +6,41 @@ body,
     width: 100%;
     margin: 0;
     padding: 0;
-}
-
-/* ======================== Font Family ======================== */
-
-/* Ensuring consistency with the 'Poppins' font throughout the body and related elements */
-body {
     font-family: 'Poppins', sans-serif;
 }
 
-calcite-panel,
-calcite-shell-panel,
-p,
-h1,
-h2,
-h3 {
-    font-family: 'Poppins', sans-serif;
-}
-
-/* ======================== Panel Content ======================== */
-
-.panel-content {
-    padding: 16px;
-}
-
-.panel-header-logo {
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
+/* ======================== Logo ======================== */
 .logo-icon {
-    height: 40px;
+    width: 100%;
+    max-width: 140px;
+    margin: 1rem auto;
+    display: block;
 }
 
 /* ======================== Button List ======================== */
-
 .button-list {
     display: flex;
     flex-direction: column;
-    align-items: stretch;
-    gap: 0.5px;
+    gap: 0.5rem;
     padding: 2px;
 }
 
-/* ======================== Button Styles ======================== */
-
+/* ======================== Country Button ======================== */
 .country-btn {
     display: flex;
     align-items: center;
-    background-color: white;
-    color: #000000;
+    gap: 0.5rem;
+    font-size: 1rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    background-color: #f8f8f8;
     border: 1px solid #34a853;
     border-radius: 10px;
-    padding: 8px 15px;
     font-weight: 600;
-    font-size: 14px;
-    margin: 5px 0;
-    cursor: pointer;
+    color: #000000;
     transition: all 0.3s ease;
     text-align: left;
 }
-
-.flag-icon {
-    width: 20px;
-    height: 15px;
-    margin-right: 10px;
-}
-
-/* ======================== Button Hover Styles ======================== */
 
 .country-btn:hover {
     background-color: #f1f1f1;
@@ -84,19 +48,73 @@ h3 {
     color: #2c8a3c;
 }
 
-/* ======================== Button Focus Styles ======================== */
-
 .country-btn:focus {
     outline: none;
     box-shadow: 0 0 5px 2px rgba(0, 128, 0, 0.6);
 }
 
-/* ======================== Calcite Shell and Actions ======================== */
-
-calcite-shell {
-    height: 100vh;
+/* ======================== Flag Icon ======================== */
+.flag-icon {
+    width: 24px;
+    height: 16px;
 }
 
-.calcite-action {
-    margin: 4px 0;
+/* ======================== YouTube Video Overlay ======================== */
+.hidden {
+    display: none;
+}
+
+#videoContainer {
+    position: absolute;
+    top: 50%;
+    left: 320px;
+    /* Aproximando mais do painel esquerdo */
+    transform: translateY(-50%);
+    z-index: 1000;
+    background: #f8f8f8;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 480px;
+    /* Define o tamanho máximo do contêiner */
+    width: 100%;
+}
+
+/* iframe mais compacto */
+#videoContainer iframe {
+    width: 100%;
+    height: 270px;
+    /* Ajustado para tamanho compacto */
+    border: none;
+    border-radius: 8px;
+}
+
+/* Botão de fechar no canto superior direito */
+#closeVideoBtn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #f8f8f8;
+    border: 1px solid #34a853;
+    color: #000;
+    font-weight: bold;
+    font-size: 18px;
+    /* Tamanho maior para o X */
+    padding: 5px 12px;
+    border-radius: 20%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    line-height: 1;
+}
+
+#closeVideoBtn:hover {
+    background-color: #f1f1f1;
+    border-color: #2c8a3c;
+    color: #2c8a3c;
+}
+
+#closeVideoBtn:focus {
+    outline: none;
+    box-shadow: 0 0 5px 2px rgba(0, 128, 0, 0.6);
 }

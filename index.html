@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GeoVisor ARO Prototype</title>
 
     <!-- Calcite Components -->
@@ -20,62 +20,57 @@
 </head>
 
 <body>
-    <!-- Calcite Shell for main layout -->
     <calcite-shell>
-        <!-- Left Sidebar Panel -->
         <calcite-shell-panel slot="panel-start">
-            <!-- Logo Header Section -->
             <div class="panel-header-logo">
-                <img src="logo_ora.svg" alt="ARO Logo" class="logo-icon">
+                <img src="logo_ora.svg" alt="ARO Logo" class="logo-icon" />
             </div>
 
-            <!-- Panel for the GeoVisor description -->
             <calcite-panel heading="Amazon GeoVisor">
                 <div class="panel-content">
                     <p><b>Prototype for the new ARO 2.0</b></p>
                     <p>It explores ways to visualize Amazon data, including layers of Indigenous Territories.</p>
 
-                    <!-- Country Buttons List -->
                     <calcite-block open>
                         <div class="button-list">
                             <button id="btn-brazil" class="country-btn">
                                 <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg"
-                                    alt="Brazil Flag" class="flag-icon">
+                                    alt="Brazil Flag" class="flag-icon" />
                                 Brazil
                             </button>
                             <button id="btn-colombia" class="country-btn">
                                 <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg"
-                                    alt="Colombia Flag" class="flag-icon">
+                                    alt="Colombia Flag" class="flag-icon" />
                                 Colombia
                             </button>
                             <button id="btn-peru" class="country-btn">
                                 <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Peru.svg"
-                                    alt="Peru Flag" class="flag-icon">
+                                    alt="Peru Flag" class="flag-icon" />
                                 Peru
                             </button>
                             <button id="btn-bolivia" class="country-btn">
                                 <img src="https://upload.wikimedia.org/wikipedia/commons/4/48/Flag_of_Bolivia.svg"
-                                    alt="Bolivia Flag" class="flag-icon">
+                                    alt="Bolivia Flag" class="flag-icon" />
                                 Bolivia
                             </button>
                             <button id="btn-ecuador" class="country-btn">
                                 <img src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Flag_of_Ecuador.svg"
-                                    alt="Ecuador Flag" class="flag-icon">
+                                    alt="Ecuador Flag" class="flag-icon" />
                                 Ecuador
                             </button>
                             <button id="btn-venezuela" class="country-btn">
                                 <img src="https://upload.wikimedia.org/wikipedia/commons/0/06/Flag_of_Venezuela.svg"
-                                    alt="Venezuela Flag" class="flag-icon">
+                                    alt="Venezuela Flag" class="flag-icon" />
                                 Venezuela
                             </button>
                             <button id="btn-guyana" class="country-btn">
                                 <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Flag_of_Guyana.svg"
-                                    alt="Guyana Flag" class="flag-icon">
+                                    alt="Guyana Flag" class="flag-icon" />
                                 Guyana
                             </button>
                             <button id="btn-suriname" class="country-btn">
                                 <img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Flag_of_Suriname.svg"
-                                    alt="Suriname Flag" class="flag-icon">
+                                    alt="Suriname Flag" class="flag-icon" />
                                 Suriname
                             </button>
                         </div>
@@ -86,8 +81,15 @@
 
         <!-- Map Container -->
         <div id="viewDiv"></div>
-
     </calcite-shell>
+
+    <!-- Floating YouTube video container -->
+    <div id="videoContainer" class="hidden">
+        <button id="closeVideoBtn" onclick="hideVideo()">x</button>
+        <iframe id="youtubeFrame" src="https://www.youtube.com/embed/d3bFJopp3Ws?si=jZuy3n_HdI7mI9sh"  width="560" height="315" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+
 
     <!-- External JavaScript -->
     <script src="script.js"></script>
